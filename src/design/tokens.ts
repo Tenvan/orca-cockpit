@@ -18,8 +18,8 @@ export type Palette = {
 }
 
 export const PRESETS: Record<Mode, Palette> = {
-  dark: { mode: 'dark', bg: '#1A1030', hg: '#F5EEFA', accent: '#FF8A1F', accent2: '#B388FF' },
-  light: { mode: 'light', bg: '#FBF6FF', hg: '#2A1840', accent: '#B35000', accent2: '#6B2FB5' }
+  dark: { mode: 'dark', bg: '#1E1E1E', hg: '#D4D4D4', accent: '#FF8A1F', accent2: '#B388FF' },
+  light: { mode: 'light', bg: '#FFFFFF', hg: '#1F1F1F', accent: '#BB5C00', accent2: '#7B4DB5' }
 }
 
 const HEX = /^#[0-9a-fA-F]{6}$/
