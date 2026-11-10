@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "mode": "dark",
   "terminal": {
-    "background": "#101820",
-    "foreground": "#F2EFE6",
-    "black": "#1E2A38",
-    "red": "#FF5C7A",
-    "green": "#7BD88F",
+    "background": "#1A1030",
+    "foreground": "#F5EEFA",
+    "black": "#2A1F44",
+    "red": "#FF6B8A",
+    "green": "#8EE0A1",
     "yellow": "#FFD166",
-    "blue": "#6CB6FF",
-    "magenta": "#FF3D9A",
+    "blue": "#8AB4FF",
+    "magenta": "#B388FF",
     "cyan": "#5CE1E6",
-    "white": "#F2EFE6"
+    "white": "#F5EEFA"
   }
 }

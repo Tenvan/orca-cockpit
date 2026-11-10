@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "mode": "light",
   "terminal": {
-    "background": "#F7F3E8",
-    "foreground": "#1A1F2B",
-    "black": "#1A1F2B",
+    "background": "#FBF6FF",
+    "foreground": "#2A1840",
+    "black": "#2A1840",
     "red": "#B3002D",
     "green": "#1F7A3A",
     "yellow": "#8A5A00",
     "blue": "#0B5FA5",
-    "magenta": "#C2005A",
+    "magenta": "#6B2FB5",
     "cyan": "#00707A",
-    "white": "#D9D4C4"
+    "white": "#DCD5E2"
   }
 }
