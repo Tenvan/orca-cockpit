@@ -1,0 +1,106 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stablyai/orca/main/docs/schemas/plugins/orca-plugin.v2.schema.json",
+  "manifestVersion": 2,
+  "id": "orca-cockpit",
+  "name": "Orca Cockpit",
+  "version": "0.1.0",
+  "description": "Test-Cockpit: je ein kleines Beispiel pro Plugin-Möglichkeit, eingefärbt mit BG, HG und Accent.",
+  "engines": {
+    "orca": ">=1.4.248"
+  },
+  "execution": "trusted-worker",
+  "pluginApi": 1,
+  "main": "src/worker.ts",
+  "contributes": {
+    "themes": [
+      { "id": "cockpit-dark", "title": "Cockpit Dark", "path": "themes/dark.json" },
+      { "id": "cockpit-light", "title": "Cockpit Light", "path": "themes/light.json" }
+    ],
+    "terminalThemes": [
+      { "id": "cockpit-dark", "title": "Cockpit Dark", "path": "terminal/dark.json" },
+      { "id": "cockpit-light", "title": "Cockpit Light", "path": "terminal/light.json" }
+    ],
+    "panels": [
+      {
+        "id": "cockpit",
+        "title": "Cockpit",
+        "icon": "gauge",
+        "entry": "src/panel.tsx",
+        "ui": "components"
+      },
+      {
+        "id": "farben",
+        "title": "Cockpit Farben",
+        "icon": "layers",
+        "entry": "panels/farben.html"
+      }
+    ],
+    "commands": [
+      { "id": "cockpit.hello", "title": "Cockpit: Hallo (Worker)" },
+      {
+        "id": "cockpit.toggleSidebar",
+        "title": "Cockpit: Rechte Seitenleiste umschalten",
+        "action": "sidebar.right.toggle"
+      }
+    ],
+    "keybindings": [{ "command": "cockpit.hello", "key": "Mod+Alt+K" }],
+    "statusBarItems": [
+      {
+        "id": "agents",
+        "text": "Agents: –",
+        "icon": "agent",
+        "tone": "accent",
+        "tooltip": "Cockpit: laufende und blockierte Agents",
+        "command": "cockpit.hello"
+      },
+      {
+        "id": "workspace",
+        "text": "Workspace: –",
+        "icon": "folder",
+        "tone": "neutral",
+        "tooltip": "Cockpit: fokussierter Workspace"
+      }
+    ],
+    "events": [{ "on": "agent.status.changed" }, { "on": "workspace.changed" }],
+    "hooks": [{ "event": "terminal.send", "onError": "pass" }],
+    "settings": [
+      {
+        "key": "agentsLabel",
+        "title": "Statusleisten-Beschriftung",
+        "description": "Text vor den Agent-Zahlen in der Statusleiste.",
+        "type": "string",
+        "default": "Agents",
+        "maxLength": 20
+      },
+      {
+        "key": "notifyOnBlocked",
+        "title": "Bei blockiertem Agent benachrichtigen",
+        "type": "boolean",
+        "default": true
+      }
+    ],
+    "customEditors": [
+      {
+        "id": "cockpit-editor",
+        "title": "Cockpit",
+        "extensions": [".cockpit"],
+        "entry": "editor/index.html"
+      }
+    ],
+    "newFiles": [
+      {
+        "id": "cockpit-file",
+        "title": "Neue Cockpit-Datei",
+        "extension": ".cockpit",
+        "template": "templates/new.cockpit"
+      }
+    ]
+  },
+  "capabilities": [
+    { "kind": "storage:own" },
+    { "kind": "settings:own" },
+    { "kind": "agent:read" },
+    { "kind": "workspace:read" },
+    { "kind": "notifications:show" }
+  ]
+}

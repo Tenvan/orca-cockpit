@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cockpit-Editor</title>
+    <style>
+      body {
+        margin: 0;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        height: 100vh;
+        background: var(--orca-background);
+        color: var(--orca-foreground);
+        font: 13px system-ui, sans-serif;
+      }
+      #chips { display: flex; gap: 8px; padding: 10px; }
+      .chip {
+        padding: 6px 10px;
+        border: 1px solid var(--orca-foreground);
+        border-radius: 4px;
+        font: 12px ui-monospace, monospace;
+      }
+      textarea {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border: 0;
+        outline: 0;
+        resize: none;
+        background: var(--orca-background);
+        color: var(--orca-foreground);
+        font: 13px ui-monospace, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chips"></div>
+    <textarea id="text" spellcheck="false"></textarea>
+    <script>
+      const chips = document.getElementById('chips')
+      const box = document.getElementById('text')
+
+      // Zeigt je Zeile "Name: #hex" als Farbfläche.
+      function render(text) {
+        chips.replaceChildren()
+        for (const line of text.split('\n')) {
+          const match = /^(\w+):\s*(#[0-9a-fA-F]{3,8})\s*$/.exec(line)
+          if (!match) continue
+          const chip = document.createElement('span')
+          chip.className = 'chip'
+          chip.textContent = match[1] + ' ' + match[2]
+          chip.style.background = match[2]
+          chip.style.color = 'var(--orca-foreground)'
+          chip.style.textShadow = '0 0 3px var(--orca-background)'
+          chips.append(chip)
+        }
+      }
+
+      orca.document.session().then((doc) => {
+        box.value = doc.value
+        box.readOnly = doc.readOnly
+        render(doc.value)
+        box.addEventListener('input', () => {
+          render(box.value)
+          doc.change(box.value)
+        })
+        doc.onReplace((next) => {
+          box.value = next
+          render(next)
+        })
+      })
+    </script>
+  </body>
+</html>

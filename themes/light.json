@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "base": "light",
+  "tokens": {
+    "--background": "#F7F3E8",
+    "--foreground": "#1A1F2B",
+    "--primary": "#C2005A",
+    "--primary-foreground": "#F7F3E8",
+    "--ring": "#C2005A",
+    "--tab-active-indicator": "#C2005A",
+    "--text-link": "#C2005A",
+    "--chat-bold-foreground": "#C2005A"
+  }
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cockpit Farben</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 12px;
+        font: 13px system-ui, sans-serif;
+        background: var(--orca-background);
+        color: var(--orca-foreground);
+      }
+      .swatch {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 8px;
+        padding: 14px 12px;
+        border: 1px solid var(--orca-foreground);
+        border-radius: 6px;
+        font-weight: 600;
+      }
+      .bg { background: var(--orca-background); color: var(--orca-foreground); }
+      .hg { background: var(--orca-foreground); color: var(--orca-background); }
+      .accent { background: var(--orca-primary); color: var(--orca-primary-foreground); }
+      code { font-weight: 400; }
+      button {
+        margin-top: 4px;
+        padding: 6px 12px;
+        border: 0;
+        border-radius: 4px;
+        background: var(--orca-primary);
+        color: var(--orca-primary-foreground);
+        font: inherit;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="swatch bg">BG <code id="bg"></code></div>
+    <div class="swatch hg">HG <code id="hg"></code></div>
+    <div class="swatch accent">Accent <code id="accent"></code></div>
+    <button id="notify">Benachrichtigung zeigen</button>
+    <script>
+      function show() {
+        const css = getComputedStyle(document.documentElement)
+        const value = (name) => css.getPropertyValue(name).trim()
+        document.getElementById('bg').textContent = value('--orca-background')
+        document.getElementById('hg').textContent = value('--orca-foreground')
+        document.getElementById('accent').textContent = value('--orca-primary')
+      }
+      show()
+      orca.on('theme', show)
+      document.getElementById('notify').onclick = () =>
+        orca.host.call('notifications.show', { title: 'Orca Cockpit', body: 'Hallo aus dem Farb-Panel' })
+    </script>
+  </body>
+</html>
