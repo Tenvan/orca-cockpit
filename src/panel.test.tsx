@@ -1,7 +1,7 @@
 // `orca plugin test .` runs this in Node with the same runtime and checks Orca uses.
 import { assert, mockHost, mount, test } from 'orca/testing'
 import * as panel from './panel'
-import { PRESETS } from './palette'
+import { PRESETS } from './design/tokens'
 import type { Overview } from './protocol'
 
 const overview: Overview = {

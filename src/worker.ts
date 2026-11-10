@@ -4,7 +4,7 @@
 // Panel bekommt in `missing` gemeldet, was fehlt.
 // Orca transpiliert die Datei beim Laden (kein Build-Schritt); Zustand liegt in orca.storage.
 import type { OrcaWorkerApi } from 'orca/worker'
-import { buildAppearance, isHex, PRESETS, type Mode, type Palette } from './palette'
+import { buildAppearance, isHex, PRESETS, type Mode, type Palette } from './design/tokens'
 import type { AgentRow, Overview, Todo, WorkspaceRow } from './protocol'
 
 const NOTES = 'notes'

@@ -1,7 +1,8 @@
 // The panel <-> worker contract, declared once: src/panel.tsx and src/worker.ts both read it.
-import type { Palette } from './palette'
+import type { Palette } from './design/tokens'
 
-export type AgentState = 'working' | 'blocked' | 'waiting' | 'done'
+export type { AgentState } from './design/tokens'
+import type { AgentState } from './design/tokens'
 
 export type AgentRow = {
   terminalId: string | null

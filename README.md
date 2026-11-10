@@ -10,7 +10,7 @@ Gedacht als Test-Cockpit und Vorlage für ein eigenes. Farben: **Orange** und **
 | Accent (Orange) | `#FF8A1F` | `#B35000` |
 | Zweitfarbe (Lila) | `#B388FF` | `#6B2FB5` |
 
-Die Farben stehen einmal in `src/palette.ts`. Daraus entstehen `themes/*.json` und `terminal/*.json`
+Die Farben stehen einmal in `src/design/tokens.ts`. Daraus entstehen `themes/*.json` und `terminal/*.json`
 (`node scripts/build-themes.ts`), und der Reiter „Look“ im Panel wendet dieselbe Rechnung live an.
 Ein Test hält die JSON-Dateien und die Rechnung gleich und prüft den Kontrast (mind. 4,5 : 1).
 
@@ -44,6 +44,12 @@ Fehlt ein Recht, bricht nichts ab: die Übersicht nennt dann, was fehlt.
 Bewusst nicht enthalten: Icon-Themes, Fonts, Syntaxen, Sprachpakete und VM-Rezepte (reine
 Datenpakete, brauchen eigene Assets). Das Plugin schreibt nie in ein Terminal (`terminal:send`
 fehlt) und startet keine Agents.
+
+## Aufbau (Atomic Design)
+
+Tokens, Atome, Moleküle, Organismen, Templates, Seiten: siehe `src/design/README.md`. Die
+Schichtregel (nur von unten importieren) prüft `src/design/layers.test.ts`; `src/panel.tsx` ist nur
+noch der Einstieg.
 
 ## Rechte
 

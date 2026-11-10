@@ -1,12 +1,12 @@
-// Die JSON-Dateien müssen genau dem entsprechen, was palette.ts berechnet, und lesbar sein.
+// Die JSON-Dateien müssen genau dem entsprechen, was tokens.ts berechnet, und lesbar sein.
 import { readFileSync } from 'node:fs'
 import { assert, test } from 'orca/testing'
-import { buildAppTheme, buildTerminalTheme, contrast, mix, PRESETS, type Mode } from './palette'
+import { buildAppTheme, buildTerminalTheme, contrast, mix, PRESETS, type Mode } from './tokens'
 
-const read = (file: string) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'))
+const read = (file: string) => JSON.parse(readFileSync(new URL(`../../${file}`, import.meta.url), 'utf8'))
 
 for (const mode of ['dark', 'light'] as Mode[]) {
-  test(`${mode}: themes/*.json und terminal/*.json folgen palette.ts`, () => {
+  test(`${mode}: themes/*.json und terminal/*.json folgen tokens.ts`, () => {
     assert.deepEqual(read(`themes/${mode}.json`), buildAppTheme(PRESETS[mode]))
     assert.deepEqual(read(`terminal/${mode}.json`), buildTerminalTheme(PRESETS[mode]))
   })

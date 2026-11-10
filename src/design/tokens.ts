@@ -143,3 +143,36 @@ export function buildAppearance(p: Palette): { app: string; terminal: string } {
     terminal: JSON.stringify(buildTerminalTheme(p))
   }
 }
+
+// ---------------------------------------------------------------------------------------------
+// Semantische Tokens: Welche Bedeutung welchen Ton und Text bekommt. Alle Bausteine darüber
+// (Atome bis Seiten) lesen sie von hier, nichts steht doppelt in einer Komponente.
+// ---------------------------------------------------------------------------------------------
+
+/** Orcas Farbvokabular für Komponenten: keine Hex-Werte in Komponenten, nur Töne. */
+export type Tone = 'neutral' | 'accent' | 'success' | 'warning' | 'danger'
+
+export type AgentState = 'working' | 'blocked' | 'waiting' | 'done'
+
+export const AGENT_STATES: readonly AgentState[] = ['working', 'blocked', 'waiting', 'done']
+
+export const STATE_TONE: Record<AgentState, Tone> = {
+  working: 'accent',
+  blocked: 'danger',
+  waiting: 'warning',
+  done: 'success'
+}
+
+export const STATE_LABEL: Record<AgentState, string> = {
+  working: 'arbeitet',
+  blocked: 'blockiert',
+  waiting: 'wartet',
+  done: 'fertig'
+}
+
+/** Ab diesem Kontrastverhältnis gilt Text als gut lesbar (WCAG AA). */
+export const CONTRAST_MIN = 4.5
+
+export function contrastTone(ratio: number): Tone {
+  return ratio >= CONTRAST_MIN ? 'success' : 'warning'
+}
